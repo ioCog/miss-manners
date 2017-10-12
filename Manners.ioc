@@ -1,0 +1,12 @@
+////ioCog Program File
+////Manners
+////Rob Lewis
+////2-Aug-2017
+
+Project "Manners";
+
+verbosity 0;
+
+load Manners.iocc;
+load Manners.iocr;
+load Manners128.iocd;

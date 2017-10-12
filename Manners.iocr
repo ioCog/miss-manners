@@ -1,0 +1,26 @@
+////ioCog Rules File
+////Manners
+////Rob Lewis
+////2-Aug-2017
+
+Rule AssignFirstSeat(
+	Guest (Chosen = NIL, Name = <name>, Gender = <gender> ANY);
+	!Seating ();
+-->
+	Make Seating (SeatNumber 1, Guest <name>);
+	Modify 1 (Chosen Yes);
+	Write ($"Assigned Seat 1 to Guest {<name>}, {<gender>}");
+);
+
+Rule AssignNextSeat(
+	Seating (SeatNumber <lastSeat>, Guest <guest>);
+	!Seating (SeatNumber > <lastSeat>);
+	Guest (Name = <guest>, Gender <gender>, Interests <interests>);
+	Guest (Chosen = NIL, Gender {= <newGender> <> <gender>}, Interests IN <interests> => <shared>, Name <newGuest>);
+-->
+	Set <seat> = Calc(<lastSeat> 1 +);
+	Make Seating (SeatNumber <seat>, Guest <newGuest>);
+	Modify 4 (Chosen Yes);
+	Write ($"Assigned Seat {<seat>} to Guest {<newGuest>}, {<newGender>} with shared interest {<shared>}");
+);
+

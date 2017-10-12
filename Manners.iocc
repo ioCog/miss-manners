@@ -1,0 +1,17 @@
+////ioCog Class File
+////Manners
+////Rob Lewis
+////1-Aug-2017
+
+Class Guest( 
+	Name,
+	Gender,
+	Interests,
+	Chosen
+);
+
+
+Class Seating(
+	SeatNumber,
+	Guest
+);
